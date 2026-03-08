@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - EduElevate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i> EduElevate
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Courses</a>
+                <div id="auth-nav-section">
+                    <!-- Dynamically populated auth state -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container pt-top">
+        <div id="loading-container" class="loading-state">
+            <i class="fa-solid fa-circle-notch fa-spin fa-3x"></i>
+            <p>Loading course details...</p>
+        </div>
+
+        <div id="error-container" class="alert alert-error hidden">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span id="error-message">Course not found.</span>
+            <a href="index.html" class="btn btn-outline btn-sm ml-auto">Back to Courses</a>
+        </div>
+
+        <div id="course-content" class="course-detail-layout hidden">
+            <!-- Left Side: Course Info -->
+            <div class="course-info-section">
+                <a href="index.html" class="btn-link mb-4 inline-block"><i class="fa-solid fa-arrow-left"></i> Back</a>
+                <div class="course-badge" id="course-category">Category</div>
+                <h1 id="course-title" class="course-title-large">Loading...</h1>
+                <p id="course-description" class="course-desc-large">...</p>
+                
+                <div class="course-meta-grid">
+                    <div class="meta-item">
+                        <i class="fa-regular fa-clock"></i>
+                        <div>
+                            <span>Duration</span>
+                            <strong id="course-duration">-</strong>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fa-solid fa-tag"></i>
+                        <div>
+                            <span>Price</span>
+                            <strong id="course-price">-</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Registration Form -->
+            <div class="course-registration-section">
+                <div class="glass-panel registration-card">
+                    <h3>Register for this Course</h3>
+                    <p class="text-muted mb-4">Secure your spot by registering today.</p>
+                    
+                    <div id="reg-alert" class="alert hidden"></div>
+
+                    <!-- Auth Block overlay if not logged in -->
+                    <div id="auth-required-block" class="auth-required-overlay hidden">
+                        <i class="fa-solid fa-lock fa-3x mb-3 text-muted"></i>
+                        <h4>Login Required</h4>
+                        <p>You must be logged in to register for courses.</p>
+                        <a href="auth.html" class="btn btn-primary mt-3" id="course-login-btn">Login / Sign Up</a>
+                    </div>
+
+                    <form id="registration-form" class="auth-form hidden">
+                        <div class="form-group">
+                            <label for="regName">Full Name</label>
+                            <input type="text" id="regName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regPhone">Phone Number</label>
+                            <input type="tel" id="regPhone" placeholder="e.g. +1 234 567 8900" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regMotivation">Why do you want to take this course?</label>
+                            <textarea id="regMotivation" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="price-summary">
+                            <span>Total Due:</span>
+                            <strong id="summary-price" class="text-primary">-</strong>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="enroll-btn">
+                            <span class="btn-text">Enroll Now</span>
+                            <i class="fa-solid fa-circle-notch fa-spin hidden" id="enroll-spinner"></i>
+                        </button>
+                    </form>
+                    
+                    <!-- Success state after enrollment -->
+                    <div id="success-block" class="success-state hidden text-center">
+                        <div class="success-circle"><i class="fa-solid fa-check"></i></div>
+                        <h4>Registration Successful!</h4>
+                        <p>Your enrollment has been confirmed.</p>
+                        <a href="index.html" class="btn btn-outline btn-block mt-4">Browse More Courses</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/register.js"></script>
+</body>
+</html>

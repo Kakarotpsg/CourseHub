@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - EduElevate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-bg">
+    <!-- Admin Login Section -->
+    <div id="admin-login-section" class="auth-container" style="margin: 5rem auto;">
+        <div class="auth-box glass-panel">
+            <div class="auth-header">
+                <h2>Admin Login</h2>
+                <p>Enter your admin credentials.</p>
+            </div>
+            <div id="admin-alert" class="alert hidden"></div>
+            <form id="admin-login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="adminUsername">Username</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" id="adminUsername" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="adminPassword" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Section -->
+    <div id="admin-dashboard-section" class="hidden">
+        <nav class="navbar admin-navbar">
+            <div class="container nav-wrapper">
+                <div class="logo">
+                    <i class="fa-solid fa-shield-halved"></i> Admin Portal
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="btn btn-outline btn-sm" target="_blank">View Live Site</a>
+                    <button id="admin-logout-btn" class="btn btn-outline btn-sm text-error" style="border-color: var(--error);">Log Out</button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container admin-main">
+            <div class="admin-header">
+                <div>
+                    <h2>Course Management</h2>
+                    <p class="text-muted">Manage all courses offered on the platform.</p>
+                </div>
+                <button id="add-course-btn" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add New Course</button>
+            </div>
+
+            <div class="glass-panel admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Course Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Duration</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-courses-tbody">
+                        <tr><td colspan="6" class="text-center py-4">Loading courses...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Course Modal -->
+    <div id="course-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h3 id="modal-title">Add/Edit Course</h3>
+                <button id="close-modal-btn" class="btn-link"><i class="fa-solid fa-xmark fa-lg"></i></button>
+            </div>
+            
+            <div id="modal-alert" class="alert hidden"></div>
+
+            <form id="course-form" class="auth-form">
+                <input type="hidden" id="courseId">
+                <div class="form-group">
+                    <label for="courseTitle">Course Title</label>
+                    <input type="text" id="courseTitle" required>
+                </div>
+                
+                <div class="admin-form-grid">
+                    <div class="form-group">
+                        <label for="courseCategory">Category</label>
+                        <input type="text" id="courseCategory" placeholder="e.g. Programming" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="coursePrice">Price ($)</label>
+                        <input type="number" id="coursePrice" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="courseDuration">Duration</label>
+                        <input type="text" id="courseDuration" placeholder="e.g. 10 Weeks" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="courseIcon">FontAwesome Icon Class</label>
+                        <input type="text" id="courseIcon" placeholder="e.g. fa-solid fa-code" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="courseDesc">Description</label>
+                    <textarea id="courseDesc" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="save-course-btn">
+                    <span class="btn-text">Save Course</span>
+                    <i class="fa-solid fa-circle-notch fa-spin hidden" id="save-spinner"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK & Admin Logic -->
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - EduElevate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-body">
+    <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Courses</a>
+    
+    <div class="auth-container">
+        <div class="auth-box glass-panel">
+            <div class="auth-header">
+                <a href="index.html" class="logo justify-center">
+                    <i class="fa-solid fa-graduation-cap"></i> EduElevate
+                </a>
+                <h2 id="auth-title">Welcome Back</h2>
+                <p id="auth-subtitle">Please enter your details to sign in.</p>
+            </div>
+
+            <div id="alert-container" class="alert hidden"></div>
+
+            <form id="auth-form" class="auth-form">
+                <div class="form-group" id="name-group" style="display: none;">
+                    <label for="fullName">Full Name</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" id="fullName" placeholder="John Doe">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" id="email" placeholder="john@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="submit-btn" disabled>
+                    <span class="btn-text">Sign In</span>
+                    <i class="fa-solid fa-circle-notch fa-spin hidden" id="submit-spinner"></i>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p id="toggle-text">Don't have an account? <button type="button" class="btn-link" id="toggle-mode-btn">Sign up</button></p>
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                    <a href="admin.html" class="text-muted" style="font-size: 0.85rem; text-decoration: none;"><i class="fa-solid fa-shield-halved"></i> Login as Admin</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/auth.js"></script>
+</body>
+</html>
